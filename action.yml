@@ -1,8 +1,9 @@
 name: 'PR Lint GitHub Action'
 description: 'PR Lint for Github Actions'
-icon: 'edit-3'
-color: 'blue'
 author: 'Farhad Safarov'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+branding:
+  icon: 'edit-3'
+  color: 'blue'
