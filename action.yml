@@ -4,6 +4,10 @@ author: 'Farhad Safarov'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+inputs:
+  title-regex:
+    description: 'Title regex to match'
+    required: true
 branding:
   icon: 'edit-3'
   color: 'blue'
