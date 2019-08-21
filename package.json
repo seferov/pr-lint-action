@@ -1,6 +1,6 @@
 {
   "name": "pr-lint-action",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "PR Lint for Github Actions",
   "main": "lib/main.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "lint"
   ],
   "author": "Farhad Safarov",
-  "license": "Mozilla Public License 2.0",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/seferov/pr-lint-action/issues"
   },
