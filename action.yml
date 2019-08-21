@@ -8,6 +8,7 @@ inputs:
   title-regex:
     description: 'Title regex to match'
     required: true
+    default: '^\[PROJECT-\d*\]\ '
 branding:
   icon: 'edit-3'
   color: 'blue'
