@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: seferov/pr-lint-action@master
       with:
-        title-regex: '^\[[a-z ]*\] '
+        title-regex: '^(\[[a-z ]*\]|Bump) '
