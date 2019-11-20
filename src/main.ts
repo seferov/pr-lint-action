@@ -4,7 +4,7 @@ import * as github from '@actions/github';
 async function run() {
   try {
     const titleRegex = core.getInput('title-regex', {required: true});
-    const regexFlags = core.getInput('regex-flags');
+    const regexFlags = core.getInput('title-regex-flags');
     core.debug(`Checking ${titleRegex} against the PR title`);
 
     const title = github.context!.payload!.pull_request!.title;
