@@ -12,7 +12,9 @@ Besides it can be used to parse titles and link with issue tracking systems such
 ```yaml
 name: PR lint
 
-on: [pull_request]
+on:
+  pull_request:
+    types: ['opened', 'edited', 'reopened', 'synchronize']
 
 jobs:
   pr-lint:
@@ -21,7 +23,7 @@ jobs:
     - uses: seferov/pr-lint-action@master
       with:
         title-regex: '^\[PROJECT-\d*\]\ '
-        title-regex-flags: 'g'
+        title-regex-flags: 'g' # optional
 ```
 
 In this example, for every pull request the title is expected to match `^\[PROJECT-\d*\]\ ` regex with a global flag `g`. For instance, `[PROJECT-123] lorem ipsum` or `[PROJECT-2345] dolor sit amet` are valid titles for this example. You can customize the title regex for your needs. The regex flags configuration is optional.
