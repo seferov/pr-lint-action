@@ -9,12 +9,6 @@ inputs:
     description: 'Title regex to match'
     required: true
     default: '^\[PROJECT-\d*\]\ '
-  github-token:
-    description: '${{ secrets.GITHUB_TOKEN }}'
-    required: false
-  auto-close-message:
-    description: 'If set, on a failing job automatically closes pull request and comments on it with the given value'
-    required: false
 branding:
   icon: 'edit-3'
   color: 'blue'
