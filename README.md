@@ -31,9 +31,9 @@ In this example, for every pull request the title is expected to match `^\[PROJE
 ## Auto-close
 
 It can be configured to close pull request automatically if the title does not match the pattern provided. To do so, `github-token` and `auto-close-message` options must be configured.
-In the message, `%pattern%` is replaced with the actual the pattern provided.
+In the message, `%pattern%` is replaced with the actual the pattern provided. Here is an [example pull request](https://github.com/seferov/pr-lint-action/pull/25).
 
-Example:
+Config:
 
 ```diff
 name: PR lint
