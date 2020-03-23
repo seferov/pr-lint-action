@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.12.5",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.1",
     "typescript": "^3.8.3"
   }
 }
