@@ -1,13 +1,45 @@
-name: PR lint
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
 on:
   pull_request:
-    types: ['opened', 'edited', 'reopened', 'synchronize']
+    types: ["opened", "edited", "reopened", "synchronize"]
+  # push:
+  #   branches: [ master ]
+  # pull_request:
+  #   branches: [ master ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  pr-lint:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: seferov/pr-lint-action@master
-      with:
-        title-regex: '^(\[[a-z ]*\]|Bump) '
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      # Runs a PR Linting Action
+      - name: PR Lint GitHub Action
+        uses: seferov/pr-lint-action@v1.1.0
+        with:
+          # Title regex to match
+          title-regex: '^\[PROJECT-\d{3,}\](\ )' # default is ^\[PROJECT-\d*\]\
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # If set, on a failing job automatically closes pull request and comments on it with the given value
+          # auto-close-message: # optional
