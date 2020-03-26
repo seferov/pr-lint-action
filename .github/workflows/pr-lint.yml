@@ -38,5 +38,5 @@ jobs:
       - name: PR Lint GitHub Action
         uses: seferov/pr-lint-action@v1.1.1
         with:
-          title-regex: '^\[PROJECT-\d{3,}\](\ )'
+          title-regex: '^\[PROJECT-\d{3,}\](\ )' # default is ^\[PROJECT-\d*\]\
           github-token: ${{ secrets.GITHUB_TOKEN }}
