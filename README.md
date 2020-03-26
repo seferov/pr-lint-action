@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: seferov/pr-lint-action@master
       with:
-        title-regex: '^\[PROJECT-\d*\]\ '
+        title-regex: '^\[PROJECT-\d*\](\ )'
         title-regex-flags: 'g' # optional
 ```
 
@@ -48,7 +48,7 @@ jobs:
     steps:
     - uses: seferov/pr-lint-action@master
       with:
-        title-regex: '^\[PROJECT-\d*\]\ '
+        title-regex: '^\[PROJECT-\d*\](\ )'
 +       github-token: ${{ secrets.GITHUB_TOKEN }}
 +       auto-close-message: 'Closing this pull request since the title does not match %pattern% pattern. Please fix the title and re-open the pull request.'
 ```
