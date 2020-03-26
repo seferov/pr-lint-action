@@ -38,8 +38,5 @@ jobs:
       - name: PR Lint GitHub Action
         uses: seferov/pr-lint-action@v1.1.0
         with:
-          # Title regex to match
-          title-regex: '^\[PROJECT-\d{3,}\](\ )' # default is ^\[PROJECT-\d*\]\
+          title-regex: '^\[PROJECT-\d{3,}\](\ )'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # If set, on a failing job automatically closes pull request and comments on it with the given value
-          # auto-close-message: # optional
