@@ -1,7 +1,7 @@
 {
   "name": "pr-lint-action",
   "version": "1.0.4",
-  "description": "PR Lint for Github Actions",
+  "description": "PR Lint for GitHub Actions",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",

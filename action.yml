@@ -1,5 +1,5 @@
 name: 'PR Lint GitHub Action'
-description: 'PR Lint for Github Actions'
+description: 'PR Lint for GitHub Actions'
 author: 'Farhad Safarov'
 runs:
   using: 'docker'
