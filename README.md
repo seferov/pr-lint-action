@@ -52,11 +52,3 @@ jobs:
 +       github-token: ${{ secrets.GITHUB_TOKEN }}
 +       auto-close-message: 'Closing this pull request since the title does not match %pattern% pattern. Please fix the title and re-open the pull request.'
 ```
-
-## Known Issues
-
-After a failing job **just** correcting title results in both failed and successful statutes.
-This is a limitation on GitHub since just editing pull request title does not count as a *change*, thus doesn't overwrite failing status.
-To overcome this, after correcting title empty commit can be sent
-
-`git commit --allow-empty -m "title corrected"`
