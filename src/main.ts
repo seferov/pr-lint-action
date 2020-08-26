@@ -6,12 +6,13 @@ async function run() {
     const
       titleRegex = core.getInput('title-regex', {required: true}),
       titleRegexFlags = core.getInput('title-regex-flags') || 'g',
+      errorMessage = core.getInput('error-message') || `Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}"`,
       title = github.context!.payload!.pull_request!.title;
 
     core.info(`Checking "${titleRegex}" with "${titleRegexFlags}" flags against the PR title: "${title}"`);
 
     if (!title.match(new RegExp(titleRegex, titleRegexFlags))) {
-      core.setFailed(`Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}" flags, and re-trigger the check by pushing a new commit. See https://github.com/seferov/pr-lint-action#known-issues`);
+      core.setFailed(errorMessage);
 
       const autoCloseMessage = core.getInput('auto-close-message'),
         githubToken = core.getInput('github-token');

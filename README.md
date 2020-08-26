@@ -24,6 +24,7 @@ jobs:
       with:
         title-regex: '^\[PROJECT-\d*\](\ )'
         title-regex-flags: 'g' # optional
+        error-message: 'Add Jira ID to your title' # optional
 ```
 
 In this example, for every pull request the title is expected to match `^\[PROJECT-\d*\]\ ` regex with a global flag `g`. For instance, `[PROJECT-123] lorem ipsum` or `[PROJECT-2345] dolor sit amet` are valid titles for this example. You can customize the title regex for your needs. The regex flags configuration is optional.
