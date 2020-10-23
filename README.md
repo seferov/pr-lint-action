@@ -1,4 +1,4 @@
-# Pull Request Lint
+# Pull Request Lint!
 
 It is a linter of pull requests for [GitHub Actions](https://github.com/features/actions).
 
