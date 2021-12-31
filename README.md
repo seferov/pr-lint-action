@@ -4,6 +4,7 @@ It is a linter of pull requests for [GitHub Actions](https://github.com/features
 
 ## Why?
 
+
 To enforce pull request titles in the same format will be useful like generating standard changelog messages.
 Besides it can be used to parse titles and link with issue tracking systems such as JIRA.
 
