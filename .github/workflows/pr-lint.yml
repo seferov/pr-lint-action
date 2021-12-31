@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: seferov/pr-lint-action@master
       with:
-        title-regex: '^(\[[a-z ]*\]|Bump) '
+        title-regex: '^([A-Z]{2}-[0-9]{3}*) '
