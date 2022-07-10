@@ -8,6 +8,8 @@ jobs:
   pr-lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: seferov/pr-lint-action@master
+    - uses: MNThomson/pr-lint-action@max/add-options
       with:
-        title-regex: '^(\[[a-z ]*\]|Bump) '
+        title-regex: '^\[\w*\](\ )'
+        title-regex-flags: 'g'
+        error-message: 'Add [] to beginning of PR title'
