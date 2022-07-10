@@ -8,7 +8,7 @@ jobs:
   pr-lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: seferov/pr-lint-action@${{ github.ref_name }}
+    - uses: seferov/pr-lint-action@master
       with:
         title-regex: '^(\[[a-z ]*\]|Bump) '
         title-regex-flags: 'g'
