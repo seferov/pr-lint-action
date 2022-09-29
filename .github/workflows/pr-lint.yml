@@ -11,3 +11,5 @@ jobs:
     - uses: seferov/pr-lint-action@master
       with:
         title-regex: '^(\[[a-z ]*\]|Bump) '
+        title-regex-flags: 'g'
+        error-message: 'Example error message'
