@@ -3,13 +3,16 @@ import * as github from '@actions/github';
 
 async function run() {
   try {
-    const
-      titleRegex = core.getInput('title-regex', {required: true}),
+    const titleRegex = core.getInput('title-regex', {required: true}),
       titleRegexFlags = core.getInput('title-regex-flags') || 'g',
-      errorMessage = core.getInput('error-message') || `Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}"`,
+      errorMessage =
+        core.getInput('error-message') ||
+        `Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}"`,
       title = github.context!.payload!.pull_request!.title;
 
-    core.info(`Checking "${titleRegex}" with "${titleRegexFlags}" flags against the PR title: "${title}"`);
+    core.info(
+      `Checking "${titleRegex}" with "${titleRegexFlags}" flags against the PR title: "${title}"`
+    );
 
     if (!title.match(new RegExp(titleRegex, titleRegexFlags))) {
       core.setFailed(errorMessage);
@@ -18,13 +21,15 @@ async function run() {
         githubToken = core.getInput('github-token');
       if (autoCloseMessage) {
         if (!githubToken) {
-          core.setFailed('To use auto-close feature you must provide github-token. See: https://github.com/seferov/pr-lint-action#auto-close');
+          core.setFailed(
+            'To use auto-close feature you must provide github-token. See: https://github.com/seferov/pr-lint-action#auto-close'
+          );
 
           return;
         }
 
         const client: github.GitHub = new github.GitHub(githubToken),
-        pr = github.context.issue;
+          pr = github.context.issue;
 
         client.pulls.createReview({
           owner: pr.owner,
