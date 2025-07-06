@@ -1,6 +1,6 @@
 {
   "name": "pr-lint-action",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "PR Lint for GitHub Actions",
   "main": "lib/main.js",
   "scripts": {
