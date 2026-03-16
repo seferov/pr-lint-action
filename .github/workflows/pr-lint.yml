@@ -8,7 +8,8 @@ jobs:
   pr-lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: seferov/pr-lint-action@master
+    - uses: actions/checkout@v4
+    - uses: ./
       with:
         title-regex: '^(\[[a-z ]*\]|Bump) '
         title-regex-flags: 'g'

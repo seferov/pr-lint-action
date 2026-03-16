@@ -53,3 +53,19 @@ jobs:
 +       github-token: ${{ secrets.GITHUB_TOKEN }}
 +       auto-close-message: 'Closing this pull request since the title does not match %pattern% pattern. Please fix the title and re-open the pull request.'
 ```
+
+## Build & distribution
+
+- **Source entry point**: The action's implementation lives in TypeScript under `src/main.ts`.
+- **Bundled artifact**: During the build step we use `@vercel/ncc` to bundle the source into a single JavaScript file at `dist/index.js` (via `npm run build`).
+- **Why `dist/index.js` is committed**: GitHub JavaScript actions are executed directly from the repository contents on the runner. To ensure consumers can run the action without installing Node.js or any build tooling, the compiled `dist/index.js` file is checked into version control and referenced from `action.yml`.
+- **Contributor workflow**: When you change code under `src/`, run `npm install` once (if needed) and then `npm run build` to regenerate `dist/index.js` before committing. The repository expects the compiled artifact to be in sync with the TypeScript sources.
+
+There is also a helper script and CI workflow to ensure the committed bundle stays in sync:
+- `npm run verify-index` runs `npm run build` and then checks that `dist/index.js` has no uncommitted changes (`git diff --exit-code dist/index.js`).
+- `.github/workflows/pr-index-verify.yml` runs this script on every pull request in this repository, so PRs will fail if `dist/index.js` is out of date with respect to `src/main.ts`.
+
+## Runtime
+
+- This action is implemented as a JavaScript action and is configured in `action.yml` with `runs.using: 'node20'` and `runs.main: 'dist/index.js'`.
+- When you use the action in a workflow (for example `- uses: seferov/pr-lint-action@master` or `- uses: ./` when developing locally), GitHub Actions automatically uses its Node.js 20 runtime to execute the bundled `dist/index.js`; you do not need to set up a Node version in your workflow steps for this action to work.

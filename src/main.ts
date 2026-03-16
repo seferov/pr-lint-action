@@ -3,13 +3,16 @@ import * as github from '@actions/github';
 
 async function run() {
   try {
-    const
-      titleRegex = core.getInput('title-regex', {required: true}),
+    const titleRegex = core.getInput('title-regex', {required: true}),
       titleRegexFlags = core.getInput('title-regex-flags') || 'g',
-      errorMessage = core.getInput('error-message') || `Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}"`,
+      errorMessage =
+        core.getInput('error-message') ||
+        `Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}"`,
       title = github.context!.payload!.pull_request!.title;
 
-    core.info(`Checking "${titleRegex}" with "${titleRegexFlags}" flags against the PR title: "${title}"`);
+    core.info(
+      `Checking "${titleRegex}" with "${titleRegexFlags}" flags against the PR title: "${title}"`
+    );
 
     if (!title.match(new RegExp(titleRegex, titleRegexFlags))) {
       core.setFailed(errorMessage);
@@ -18,22 +21,24 @@ async function run() {
         githubToken = core.getInput('github-token');
       if (autoCloseMessage) {
         if (!githubToken) {
-          core.setFailed('To use auto-close feature you must provide github-token. See: https://github.com/seferov/pr-lint-action#auto-close');
+          core.setFailed(
+            'To use auto-close feature you must provide github-token. See: https://github.com/seferov/pr-lint-action#auto-close'
+          );
 
           return;
         }
 
-        const client: github.GitHub = new github.GitHub(githubToken),
-        pr = github.context.issue;
+        const octokit = github.getOctokit(githubToken);
+        const pr = github.context.issue;
 
-        client.pulls.createReview({
+        await octokit.rest.pulls.createReview({
           owner: pr.owner,
           repo: pr.repo,
           pull_number: pr.number,
           body: autoCloseMessage.replace('%pattern%', titleRegex),
           event: 'COMMENT'
         });
-        client.pulls.update({
+        await octokit.rest.pulls.update({
           owner: pr.owner,
           repo: pr.repo,
           pull_number: pr.number,
@@ -42,7 +47,7 @@ async function run() {
       }
     }
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed((error as Error).message);
   }
 }
 
