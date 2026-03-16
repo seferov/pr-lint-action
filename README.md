@@ -61,6 +61,10 @@ jobs:
 - **Why `dist/index.js` is committed**: GitHub JavaScript actions are executed directly from the repository contents on the runner. To ensure consumers can run the action without installing Node.js or any build tooling, the compiled `dist/index.js` file is checked into version control and referenced from `action.yml`.
 - **Contributor workflow**: When you change code under `src/`, run `npm install` once (if needed) and then `npm run build` to regenerate `dist/index.js` before committing. The repository expects the compiled artifact to be in sync with the TypeScript sources.
 
+There is also a helper script and CI workflow to ensure the committed bundle stays in sync:
+- `npm run verify-index` runs `npm run build` and then checks that `dist/index.js` has no uncommitted changes (`git diff --exit-code dist/index.js`).
+- `.github/workflows/pr-index-verify.yml` runs this script on every pull request in this repository, so PRs will fail if `dist/index.js` is out of date with respect to `src/main.ts`.
+
 ## Runtime
 
 - This action is implemented as a JavaScript action and is configured in `action.yml` with `runs.using: 'node20'` and `runs.main: 'dist/index.js'`.

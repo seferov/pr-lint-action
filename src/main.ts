@@ -28,17 +28,17 @@ async function run() {
           return;
         }
 
-        const client: github.GitHub = new github.GitHub(githubToken),
-          pr = github.context.issue;
+        const octokit = github.getOctokit(githubToken);
+        const pr = github.context.issue;
 
-        client.pulls.createReview({
+        await octokit.rest.pulls.createReview({
           owner: pr.owner,
           repo: pr.repo,
           pull_number: pr.number,
           body: autoCloseMessage.replace('%pattern%', titleRegex),
           event: 'COMMENT'
         });
-        client.pulls.update({
+        await octokit.rest.pulls.update({
           owner: pr.owner,
           repo: pr.repo,
           pull_number: pr.number,
